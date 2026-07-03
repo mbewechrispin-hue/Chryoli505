@@ -41,7 +41,7 @@ app/ components/ features/ lib/ hooks/ types/ supabase/ public/
 npm install
 ```
 
-2. Configure environment variables
+1. Configure environment variables
 
 ```bash
 cp .env.example .env.local
@@ -49,12 +49,12 @@ cp .env.example .env.local
 
 Fill all variables in `.env.local`.
 
-3. Apply SQL in Supabase SQL editor:
+1. Apply SQL in Supabase SQL editor:
 
 - `supabase/schema.sql`
 - `supabase/storage.sql`
 
-4. Run development server
+1. Run development server
 
 ```bash
 npm run dev
@@ -62,11 +62,16 @@ npm run dev
 
 ## Deployment (Vercel)
 
+Vercel uses the standard `npm` available in its build environment. It detects `package-lock.json`, installs dependencies with `npm`, runs `npm run build`, and serves the Next.js app automatically.
+
 1. Push repository to Git provider.
-2. Import project in Vercel.
-3. Set all environment variables from `.env.example`.
-4. Ensure Supabase URL/keys and Resend API key are configured.
-5. Deploy.
+1. Import project in Vercel.
+1. Set all environment variables from `.env.example`.
+1. Ensure `NEXT_PUBLIC_SUPABASE_URL` and at least one of `NEXT_PUBLIC_SUPABASE_ANON_KEY` or `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` is configured.
+1. Set production values for `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `ADMIN_EMAIL`, and a `CSRF_SECRET` with at least 16 characters.
+1. Set `NEXT_PUBLIC_APP_URL` to your production Vercel domain.
+1. If your project uses a custom domain, update `NEXT_PUBLIC_APP_URL` after the domain is attached.
+1. Deploy.
 
 ## Notes
 

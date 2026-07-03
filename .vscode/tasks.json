@@ -4,7 +4,7 @@
 		{
 			"label": "Typecheck Project",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -14,7 +14,7 @@
 		{
 			"label": "Typecheck Project Retry",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -24,7 +24,7 @@
 		{
 			"label": "Typecheck Project Final",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -34,7 +34,7 @@
 		{
 			"label": "Lint Project Final",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"lint"
@@ -44,7 +44,7 @@
 		{
 			"label": "Build Project Final",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"build"
@@ -54,7 +54,7 @@
 		{
 			"label": "Build Project Offline Safe",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"build"
@@ -64,7 +64,7 @@
 		{
 			"label": "Build Debug",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"build",
@@ -76,7 +76,7 @@
 		{
 			"label": "Build Isolate Portfolio",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"build"
@@ -86,7 +86,7 @@
 		{
 			"label": "Build After Layout Fix",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"build"
@@ -96,7 +96,7 @@
 		{
 			"label": "Typecheck Portfolio Redesign",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -106,7 +106,7 @@
 		{
 			"label": "Typecheck Dark Theme",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -116,7 +116,7 @@
 		{
 			"label": "Typecheck Portfolio Soft Blur",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -126,7 +126,7 @@
 		{
 			"label": "Typecheck Popup Open Fix",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -136,7 +136,7 @@
 		{
 			"label": "Typecheck Popup Hash Fix",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -146,7 +146,7 @@
 		{
 			"label": "Typecheck Hero Animations",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -156,7 +156,7 @@
 		{
 			"label": "Typecheck Premium Hero Motion",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"typecheck"
@@ -166,7 +166,7 @@
 		{
 			"label": "Build App Now",
 			"type": "shell",
-			"command": "node_local\\npm.cmd",
+			"command": "npm",
 			"args": [
 				"run",
 				"build"
