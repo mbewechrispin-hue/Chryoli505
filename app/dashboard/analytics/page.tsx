@@ -6,16 +6,18 @@ export default async function AnalyticsPage() {
   const { data } = await supabaseAdmin
     .from("analytics")
     .select("date_key,visitors,page_views,sessions,traffic_sources")
-    .order("date_key", { ascending: true })
+    .order("date_key", { ascending: false })
     .limit(30);
 
-  const visitorsData = (data ?? []).map((item) => ({
+  const rows = [...(data ?? [])].reverse();
+
+  const visitorsData = rows.map((item) => ({
     date: item.date_key,
     visitors: item.visitors
   }));
 
   const sourceTotals = new Map<string, number>();
-  for (const row of data ?? []) {
+  for (const row of rows) {
     const sources = (row.traffic_sources ?? {}) as Record<string, number>;
     Object.entries(sources).forEach(([key, value]) => {
       sourceTotals.set(key, (sourceTotals.get(key) ?? 0) + Number(value));
