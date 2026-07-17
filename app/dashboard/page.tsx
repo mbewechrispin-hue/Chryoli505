@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { VisitorsChart, TrafficSourceChart } from "@/features/analytics/charts";
 
 const cards = [
   ["Total Visitors", "24,830"],
@@ -9,22 +8,6 @@ const cards = [
   ["New Requests Today", "18"]
 ] as const;
 
-const visitors = [
-  { date: "Mon", visitors: 430 },
-  { date: "Tue", visitors: 520 },
-  { date: "Wed", visitors: 470 },
-  { date: "Thu", visitors: 610 },
-  { date: "Fri", visitors: 740 },
-  { date: "Sat", visitors: 580 },
-  { date: "Sun", visitors: 530 }
-];
-
-const sources = [
-  { name: "Organic", value: 44 },
-  { name: "Direct", value: 27 },
-  { name: "Referral", value: 18 },
-  { name: "Social", value: 11 }
-];
 
 export default function DashboardPage() {
   return (
@@ -42,14 +25,12 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-1">
         <Card>
-          <CardHeader><CardTitle>Visitors Chart</CardTitle></CardHeader>
-          <CardContent><VisitorsChart data={visitors} /></CardContent>
-        </Card>
-        <Card>
-          <CardHeader><CardTitle>Traffic Sources</CardTitle></CardHeader>
-          <CardContent><TrafficSourceChart data={sources} /></CardContent>
+          <CardHeader><CardTitle>Analytics Removed</CardTitle></CardHeader>
+          <CardContent>
+            <p className="text-sm text-zinc-600">Analytics functionality has been removed.</p>
+          </CardContent>
         </Card>
       </div>
     </div>

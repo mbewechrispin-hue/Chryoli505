@@ -1,4 +1,5 @@
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import type { Database } from "@/types/database";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function ActivityLogsPage() {
@@ -7,6 +8,16 @@ export default async function ActivityLogsPage() {
     .select("id,action,entity_type,ip_address,created_at")
     .order("created_at", { ascending: false })
     .limit(100);
+
+  type ActivityLogRow = {
+    id: string;
+    action: string;
+    entity_type: string;
+    ip_address: string | null;
+    created_at: string;
+  };
+
+  const rows = (data ?? []) as ActivityLogRow[];
 
   return (
     <Card>
@@ -23,7 +34,7 @@ export default async function ActivityLogsPage() {
               </tr>
             </thead>
             <tbody>
-              {(data ?? []).map((item) => (
+              {rows.map((item) => (
                 <tr key={item.id} className="border-b border-zinc-100">
                   <td className="py-3">{item.action}</td>
                   <td>{item.entity_type}</td>

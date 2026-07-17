@@ -7,6 +7,7 @@ import { sanitizeInput } from "@/lib/sanitize";
 import { sendContactNotification } from "@/lib/emails";
 import { env } from "@/lib/env";
 import { verifyCsrfToken } from "@/lib/csrf";
+import type { Database } from "@/types/database";
 
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies();
@@ -35,7 +36,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
-  const payload = {
+  const payload: Database["public"]["Tables"]["contact_messages"]["Insert"] = {
     name: sanitizeInput(parsed.data.name),
     email: sanitizeInput(parsed.data.email),
     subject: sanitizeInput(parsed.data.subject),
@@ -43,7 +44,7 @@ export async function POST(request: NextRequest) {
     ip_address: ip
   };
 
-  const { error } = await supabaseAdmin.from("contact_messages").insert(payload);
+  const { error } = await supabaseAdmin.from("contact_messages").insert(payload as unknown as never[]);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

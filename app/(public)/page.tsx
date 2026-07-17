@@ -12,6 +12,8 @@ import { CTASection } from "@/components/sections/cta-section";
 import { QuoteForm } from "@/components/sections/quote-form";
 import { ContactForm } from "@/components/sections/contact-form";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   return (
     <main>

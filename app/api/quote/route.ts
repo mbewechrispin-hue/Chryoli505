@@ -9,6 +9,7 @@ import { checkRateLimit } from "@/lib/rate-limit";
 import { env } from "@/lib/env";
 import { verifyCsrfToken } from "@/lib/csrf";
 import { COMPANY_EMAIL } from "@/lib/company";
+import type { Database } from "@/types/database";
 
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies();
@@ -33,7 +34,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const payload = {
+  const payload: Database["public"]["Tables"]["quotations"]["Insert"] = {
     full_name: sanitizeInput(parsed.data.fullName),
     company_name: sanitizeInput(parsed.data.companyName),
     email: sanitizeInput(parsed.data.email),
@@ -43,31 +44,33 @@ export async function POST(request: NextRequest) {
     project_description: sanitizeInput(parsed.data.projectDescription)
   };
 
-  const { data, error } = await supabaseAdmin.from("quotations").insert(payload).select("id").single();
+  const { data, error } = await supabaseAdmin.from("quotations").insert(payload as unknown as never[]).select("id").single();
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  const insertedId = (data as { id?: string | null } | null)?.id ?? null;
+
   await Promise.all([
     sendNewQuoteNotification(COMPANY_EMAIL, {
-      Name: payload.full_name,
-      Company: payload.company_name,
-      Email: payload.email,
-      Phone: payload.phone_number,
-      Service: payload.service_type,
-      Budget: payload.budget_range,
-      Description: payload.project_description
+      Name: payload.full_name!,
+      Company: payload.company_name!,
+      Email: payload.email!,
+      Phone: payload.phone_number!,
+      Service: payload.service_type!,
+      Budget: payload.budget_range!,
+      Description: payload.project_description!
     }),
-    sendQuoteConfirmation(payload.email, payload.full_name),
+    sendQuoteConfirmation(payload.email!, payload.full_name!),
     logActivity({
       action: "quote_created",
       entityType: "quotation",
-      entityId: data.id,
-      metadata: { email: payload.email },
+      entityId: insertedId,
+      metadata: { email: payload.email ?? "" },
       ipAddress: ip
     })
   ]);
 
-  return NextResponse.json({ success: true, id: data.id });
+  return NextResponse.json({ success: true, id: insertedId });
 }

@@ -1,5 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import type { Database } from "@/types/database";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,15 +9,16 @@ import { logActivity } from "@/features/activity/logger";
 
 async function addFaq(formData: FormData) {
   "use server";
-  const payload = {
+  const payload: Database["public"]["Tables"]["faqs"]["Insert"] = {
     question: String(formData.get("question") ?? ""),
     answer: String(formData.get("answer") ?? "")
   };
-  const { data } = await supabaseAdmin.from("faqs").insert(payload).select("id").single();
+  const { data } = await supabaseAdmin.from("faqs").insert(payload as unknown as never[]).select("id").single();
+  const faqId = (data as { id?: string | null } | null)?.id ?? null;
   await logActivity({
     action: "content_created",
     entityType: "faq",
-    entityId: data?.id ?? null,
+    entityId: faqId,
     metadata: { question: payload.question }
   });
   revalidatePath("/dashboard/faqs");
@@ -32,6 +34,7 @@ async function deleteFaq(formData: FormData) {
 
 export default async function FaqAdminPage() {
   const { data } = await supabaseAdmin.from("faqs").select("id,question,answer").order("created_at", { ascending: false });
+  const rows = (data ?? []) as Database["public"]["Tables"]["faqs"]["Row"][];
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -49,7 +52,7 @@ export default async function FaqAdminPage() {
       <Card>
         <CardHeader><CardTitle>FAQ List</CardTitle></CardHeader>
         <CardContent className="space-y-3">
-          {(data ?? []).map((item) => (
+          {rows.map((item) => (
             <div key={item.id} className="rounded-xl border border-zinc-200 p-3">
               <p className="font-semibold">{item.question}</p>
               <p className="text-sm text-zinc-600">{item.answer}</p>

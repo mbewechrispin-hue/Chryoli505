@@ -1,5 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import type { Database } from "@/types/database";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ async function createUser(formData: FormData) {
     email,
     role,
     is_active: true
-  });
+  } as unknown as never[]);
 
   await logActivity({
     action: "user_created",
@@ -40,7 +41,7 @@ async function toggleUserStatus(formData: FormData) {
   "use server";
   const id = String(formData.get("id") ?? "");
   const active = String(formData.get("active") ?? "true") === "true";
-  await supabaseAdmin.from("profiles").update({ is_active: !active }).eq("id", id);
+  await supabaseAdmin.from("profiles").update({ is_active: !active } as unknown as never).eq("id", id);
   await logActivity({
     action: !active ? "user_activated" : "user_suspended",
     entityType: "user",
@@ -59,6 +60,7 @@ async function deleteUser(formData: FormData) {
 
 export default async function UsersPage() {
   const { data } = await supabaseAdmin.from("profiles").select("id,email,role,is_active").order("created_at", { ascending: false });
+  const rows = (data ?? []) as Database["public"]["Tables"]["profiles"]["Row"][];
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -81,7 +83,7 @@ export default async function UsersPage() {
       <Card>
         <CardHeader><CardTitle>User Management</CardTitle></CardHeader>
         <CardContent className="space-y-3">
-          {(data ?? []).map((user) => (
+          {rows.map((user) => (
             <div key={user.id} className="rounded-xl border border-zinc-200 p-3">
               <p className="font-medium">{user.email}</p>
               <p className="text-sm capitalize text-zinc-600">{user.role} • {user.is_active ? "Active" : "Suspended"}</p>

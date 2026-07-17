@@ -62,12 +62,12 @@ function loadEnv(): Env {
     CSRF_SECRET: "dev-csrf-secret-change-me-12345"
   } as const;
 
-  const envFromProcess: any = {
+  const envFromProcess = {
     ...defaults,
     ...process.env,
     RATE_LIMIT_MAX: Number(process.env.RATE_LIMIT_MAX ?? defaults.RATE_LIMIT_MAX),
     RATE_LIMIT_WINDOW_MS: Number(process.env.RATE_LIMIT_WINDOW_MS ?? defaults.RATE_LIMIT_WINDOW_MS)
-  };
+  } as Partial<Env>;
 
   const resolvedKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? undefined;
   envFromProcess.NEXT_PUBLIC_SUPABASE_ANON_KEY = resolvedKey;

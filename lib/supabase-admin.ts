@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { env } from "@/lib/env";
 import type { Database } from "@/types/database";
 
-export const supabaseAdmin = createClient<Database>(
+export const supabaseAdmin = createClient<Database, "public", "public">(
   env.NEXT_PUBLIC_SUPABASE_URL,
   env.SUPABASE_SERVICE_ROLE_KEY,
   {

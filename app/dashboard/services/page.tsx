@@ -1,5 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import type { Database } from "@/types/database";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,17 +9,22 @@ import { logActivity } from "@/features/activity/logger";
 
 async function addService(formData: FormData) {
   "use server";
-  const payload = {
+  const payload: Database["public"]["Tables"]["services"]["Insert"] = {
     title: String(formData.get("title") ?? ""),
     description: String(formData.get("description") ?? ""),
     icon: String(formData.get("icon") ?? "Briefcase"),
     image_url: String(formData.get("image_url") ?? "") || null
   };
-  const { data } = await supabaseAdmin.from("services").insert(payload).select("id").single();
+  const { data } = await supabaseAdmin
+    .from("services")
+    .insert(payload as unknown as never[])
+    .select("id")
+    .single();
+  const serviceId = (data as { id?: string | null } | null)?.id ?? null;
   await logActivity({
     action: "content_created",
     entityType: "service",
-    entityId: data?.id ?? null,
+    entityId: serviceId,
     metadata: { title: payload.title }
   });
   revalidatePath("/dashboard/services");
@@ -38,6 +44,7 @@ async function deleteService(formData: FormData) {
 
 export default async function ServicesAdminPage() {
   const { data } = await supabaseAdmin.from("services").select("id,title,description").order("created_at", { ascending: false });
+  const rows = (data ?? []) as Database["public"]["Tables"]["services"]["Row"][];
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -57,7 +64,7 @@ export default async function ServicesAdminPage() {
       <Card>
         <CardHeader><CardTitle>Service List</CardTitle></CardHeader>
         <CardContent className="space-y-3">
-          {(data ?? []).map((service) => (
+          {rows.map((service) => (
             <div key={service.id} className="rounded-xl border border-zinc-200 p-3">
               <p className="font-semibold">{service.title}</p>
               <p className="text-sm text-zinc-600">{service.description}</p>

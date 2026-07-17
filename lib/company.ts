@@ -1,5 +1,7 @@
 export const COMPANY_EMAIL = "yolicinvestmentsltd@gmail.com";
 
+export const COMPANY_NAME = "Yolic";
+
 export const WHATSAPP_CONTACTS = [
   {
     label: "+260 774 652 383",

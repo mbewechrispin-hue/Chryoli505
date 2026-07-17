@@ -15,7 +15,7 @@ async function updateQuotationStatus(formData: FormData) {
   const status: QuotationStatus = QUOTATION_STATUSES.includes(rawStatus as QuotationStatus)
     ? (rawStatus as QuotationStatus)
     : "pending";
-  await supabaseAdmin.from("quotations").update({ status }).eq("id", id);
+  await supabaseAdmin.from("quotations").update({ status } as unknown as never).eq("id", id);
   await logActivity({
     action: "quote_updated",
     entityType: "quotation",
