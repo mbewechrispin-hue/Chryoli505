@@ -35,7 +35,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-100 shadow-xl">
               <Image
-                src="/images/logo/logo.png"
+                src="/images/logo/new-cover.png"
                 alt="Yolic team cover"
                 fill
                 className="object-cover"
