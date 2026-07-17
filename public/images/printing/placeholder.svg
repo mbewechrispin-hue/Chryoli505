@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#18181b"/>
+  <rect x="80" y="80" width="1040" height="740" rx="32" fill="#27272a" stroke="#3f3f46" stroke-width="4"/>
+  <path d="M220 640c70-150 130-230 220-290 90-60 180-85 300-90 70-3 140 8 220 40" stroke="#f4f4f5" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <circle cx="330" cy="315" r="58" fill="#a1a1aa"/>
+  <circle cx="760" cy="275" r="36" fill="#71717a"/>
+  <rect x="220" y="520" width="240" height="24" rx="12" fill="#fafafa" opacity="0.9"/>
+  <rect x="220" y="560" width="320" height="20" rx="10" fill="#d4d4d8" opacity="0.8"/>
+  <text x="600" y="780" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" fill="#fafafa">Portfolio preview</text>
+</svg>

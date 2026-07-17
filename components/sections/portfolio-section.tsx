@@ -63,5 +63,16 @@ export async function PortfolioSection() {
     items = [];
   }
 
+  if (items.length === 0) {
+    items = [
+      {
+        title: "Portfolio preview",
+        image: "/images/printing/placeholder.svg",
+        category: "Preview",
+        sortPath: "preview"
+      }
+    ];
+  }
+
   return <PortfolioGalleryClient items={items} />;
 }
