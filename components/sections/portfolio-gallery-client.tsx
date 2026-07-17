@@ -270,7 +270,7 @@ export function PortfolioGalleryClient({ items }: Props) {
             Portfolio
           </h2>
           <p className="mt-4 text-sm text-zinc-400 md:text-base">
-            Browse by category and click any card to explore the full gallery.
+            Browse by category and open any card to explore the full gallery.
           </p>
         </div>
 
