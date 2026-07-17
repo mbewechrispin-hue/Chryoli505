@@ -35,7 +35,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-100 shadow-xl">
               <Image
-                src="/images/logo/NEW%20COVER.png"
+                src="/images/logo/new-cover.png"
                 alt="Yolic team cover"
                 fill
                 className="object-cover"
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <div className="absolute -right-4 top-5 hidden w-40 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-lg sm:block md:w-48">
               <div className="relative aspect-square">
                 <Image
-                  src="/images/printing/3D%20LIGHTS/3D%20(4).jpg"
+                  src="/images/printing/3d-lights/3d-4.jpg"
                   alt="3D signage sample"
                   fill
                   className="object-cover"

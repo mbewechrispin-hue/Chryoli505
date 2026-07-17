@@ -11,18 +11,15 @@ import { useMotionValue, useSpring, useTransform } from "framer-motion";
 const INTERVAL = 5000; // ms per slide
 
 const slides = [
-  { src: "/images/logo/NEW COVER.png", label: "Our Brand Story", sub: "Where every great business begins" },
+  { src: "/images/logo/new-cover.png", label: "Our Brand Story", sub: "Where every great business begins" },
   { src: "/images/logo/profile.png", label: "About Yolic", sub: "One partner for all your business needs" },
-  { src: "/images/printer/print up.JPG", label: "Print Solutions", sub: "Precision printing at scale" },
-  { src: "/images/printing/3D LIGHTS/3D,2D Signage and stickers.png", label: "Signage & Stickers", sub: "Make your brand impossible to miss" },
-  { src: "/images/printing/branded/CNC CUTTING.png", label: "CNC Cutting", sub: "Engineered to the millimeter" },
-  { src: "/images/printing/large format printing/LARGE PRINT & BRANDING.png", label: "Large Print & Branding", sub: "Bold visuals that command attention" },
+  { src: "/images/printer/print-up.JPG", label: "Print Solutions", sub: "Precision printing at scale" },
+  { src: "/images/printing/3d-lights/3d-2d-signage-and-stickers.png", label: "Signage & Stickers", sub: "Make your brand impossible to miss" },
+  { src: "/images/printing/branded/cnc-cutting.png", label: "CNC Cutting", sub: "Engineered to the millimeter" },
+  { src: "/images/printing/large-format-printing/large-print-branding.png", label: "Large Print & Branding", sub: "Bold visuals that command attention" },
   { src: "/images/printing/branded/branding.JPG", label: "Paper Printing", sub: "Quality you can feel" },
-  { src: "/images/printing/t shirt printing/T-SHIRT PRINTING.png", label: "T-Shirt Printing", sub: "Wear your brand with pride" },
-].map((slide) => ({
-  ...slide,
-  src: encodeURI(slide.src),
-}));
+  { src: "/images/printing/t-shirt-printing/T-SHIRT PRINTING.png", label: "T-Shirt Printing", sub: "Wear your brand with pride" },
+];
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
