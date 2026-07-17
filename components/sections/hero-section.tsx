@@ -11,7 +11,7 @@ import { useMotionValue, useSpring, useTransform } from "framer-motion";
 const INTERVAL = 5000; // ms per slide
 
 const slides = [
-  { src: "/images/logo/new-cover.png", label: "Our Brand Story", sub: "Where every great business begins" },
+  { src: "/images/logo/logo.png", label: "Our Brand Story", sub: "Where every great business begins" },
   { src: "/images/logo/profile.png", label: "About Yolic", sub: "One partner for all your business needs" },
   { src: "/images/printer/print-up.JPG", label: "Print Solutions", sub: "Precision printing at scale" },
   { src: "/images/printing/3d-lights/3d-2d-signage-and-stickers.png", label: "Signage & Stickers", sub: "Make your brand impossible to miss" },
