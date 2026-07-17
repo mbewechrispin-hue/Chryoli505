@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description:
       "One partner for audio production, engineering support, and practical learning services."
   },
-  metadataBase: new URL("https://yolic.com")
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://yolic.com")
 };
 
 const organizationJsonLd = {
